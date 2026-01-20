@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>English Starter | 英语初学者自学</title>
+  <meta name="description" content="English learning for beginners: topics, sentences, vocabulary, flashcards, speaking, and quizzes." />
+  <style>
+    :root{
+      --bg:#fde7f3; /* light pink */
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --brand:#2563eb;
+      --good:#16a34a;
+      --warn:#d97706;
+      --bad:#dc2626;
+      --border:#e5e7eb;
+      --shadow: 0 10px 26px rgba(17,24,39,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color:var(--text);
+    }
+    header{
+      position:sticky; top:0; z-index:50;
+      background: var(--bg);
+      border-bottom:1px solid var(--border);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:16px 16px;}
+    .top{display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .logo{width:40px; height:40px; border-radius:14px; background: var(--brand); box-shadow: var(--shadow);}
+    .brand h1{font-size:16px; margin:0; letter-spacing:.2px}
+    .brand p{margin:0; color:var(--muted); font-size:12px}
+
+    .nav{display:flex; gap:8px; flex-wrap:wrap;}
+    .chip{
+      cursor:pointer;
+      border:1px solid var(--border);
+      background: var(--card);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+      transition:.15s transform, .15s border;
+      user-select:none;
+      box-shadow: 0 1px 0 rgba(17,24,39,.02);
+    }
+    .chip:hover{transform: translateY(-1px); border-color: rgba(37,99,235,.35)}
+    .chip.active{border-color: rgba(37,99,235,.55)}
+
+    main{padding:18px 0 58px}
+    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:16px; align-items:start;}
+    @media (max-width: 980px){.grid{grid-template-columns:1fr}}
+
+    .card{background: var(--card); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden;}
+    .card .hd{padding:16px 16px 10px; border-bottom:1px solid var(--border)}
+    .card .hd h2{margin:0; font-size:16px}
+    .card .hd p{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.4}
+    .card .bd{padding:16px}
+
+    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .btn{
+      cursor:pointer;
+      border:1px solid var(--border);
+      background: #fff;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      transition:.15s transform, .15s border;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(37,99,235,.35)}
+    .btn.primary{background: rgba(37,99,235,.08); border-color: rgba(37,99,235,.35)}
+    .btn.good{background: rgba(22,163,74,.08); border-color: rgba(22,163,74,.35)}
+    .btn.warn{background: rgba(217,119,6,.08); border-color: rgba(217,119,6,.35)}
+    .btn.bad{background: rgba(220,38,38,.08); border-color: rgba(220,38,38,.35)}
+    .btn.small{padding:8px 10px; border-radius:10px; font-size:12px}
+
+    .kpi{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;}
+    @media (max-width: 520px){.kpi{grid-template-columns:1fr}}
+    .stat{padding:12px; border-radius:14px; border:1px solid var(--border); background:#fff}
+    .stat .t{font-size:12px; color:var(--muted)}
+    .stat .v{font-size:18px; margin-top:6px}
+
+    .lesson{padding:14px; border:1px solid var(--border); border-radius:16px; background:#fff; margin-bottom:12px;}
+    .lesson h3{margin:0 0 8px; font-size:15px}
+
+    .bilingual{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    @media (max-width: 680px){.bilingual{grid-template-columns:1fr}}
+    .bubble{padding:12px; border:1px solid var(--border); background:#fff; border-radius:14px;}
+    .bubble .label{font-size:12px; color:var(--muted); margin-bottom:6px}
+    .bubble .text{font-size:15px; line-height:1.55}
+
+    .list{display:flex; flex-direction:column; gap:10px}
+    .word{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px; border:1px solid var(--border); background:#fff; border-radius:14px;}
+    .word .left{display:flex; flex-direction:column; gap:4px}
+    .word .en{font-size:15px}
+    .word .zh{font-size:12px; color:var(--muted)}
+
+    .input{width:100%; padding:12px; border-radius:12px; border:1px solid var(--border); background:#fff; color:var(--text); outline:none; font-size:14px;}
+    select.input{padding:10px 12px}
+
+    .quiz{display:flex; flex-direction:column; gap:10px;}
+    .q{padding:12px; border:1px solid var(--border); background:#fff; border-radius:14px;}
+    .q .prompt{font-size:14px; margin-bottom:10px; white-space:pre-line}
+    .choices{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+    @media (max-width: 520px){.choices{grid-template-columns:1fr}}
+
+    .toast{
+      position:fixed; left:50%; transform: translateX(-50%);
+      bottom:18px;
+      background: #111827;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      opacity:0;
+      transition:.18s opacity, .18s transform;
+      pointer-events:none;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-6px)}
+
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    .tag{font-size:12px; color:var(--muted)}
+    .divider{height:1px; background:var(--border); margin:12px 0}
+
+    .hero{
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background:#fff;
+      margin-bottom:12px;
+    }
+    .hero h2{margin:0 0 8px; font-size:26px; line-height:1.15}
+    .hero p{margin:0; color:var(--muted)}
+
+    footer{color:var(--muted); font-size:12px; padding-top:10px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>English Starter <span class="mono">v3</span></h1>
+            <p>English speaking as a tool for life and opportunity.</p>
+          </div>
+        </div>
+        <div class="nav" id="nav"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="grid">
+        <section class="card" id="mainCard">
+          <div class="hd">
+            <h2 id="viewTitle">首页 / Home</h2>
+            <p id="viewDesc">选择模块开始学习。Pick a module to start.</p>
+          </div>
+          <div class="bd" id="view"></div>
+        </section>
+
+        <aside class="card">
+          <div class="hd">
+            <h2>朗读 + 进度 / Speaking + Progress</h2>
+            <p>选择声音与语速，然后点击 Speak。</p>
+          </div>
+          <div class="bd">
+            <div class="lesson" style="margin-bottom:12px">
+              <h3 style="margin-bottom:10px">朗读设置 / Speak settings</h3>
+              <div class="row" style="margin-bottom:10px">
+                <select class="input" id="voiceSelect" aria-label="Voice"></select>
+                <select class="input" id="rateSelect" aria-label="Rate" style="max-width:190px">
+                  <option value="0.85">慢 / Slow</option>
+                  <option value="0.95" selected>标准 / Standard</option>
+                  <option value="1.05">快 / Fast</option>
+                </select>
+              </div>
+              <div class="row">
+                <button class="btn small primary" id="testVoiceBtn">测试 / Test</button>
+                <button class="btn small" id="stopVoiceBtn">停止 / Stop</button>
+                <span class="tag" id="voiceStatus">加载中… Loading…</span>
+              </div>
+              <div class="divider"></div>
+              <div class="tag">Tip：先选一个 English voice，然后点 Speak 跟读 3 遍。</div>
+            </div>
+
+            <div class="kpi" id="kpi"></div>
+            <div style="height:12px"></div>
+            <div class="row">
+              <button class="btn small warn" id="resetBtn">重置 / Reset</button>
+              <button class="btn small" id="exportBtn">导出 / Export</button>
+              <button class="btn small" id="importBtn">导入 / Import</button>
+              <input class="input" id="importInput" placeholder="粘贴导入 JSON 后按 Enter" style="display:none" />
+            </div>
+            <footer>
+              只包含学习内容：话题、句子、词汇、闪卡、朗读、小测与学习计划。
+            </footer>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const MODULES = [
+      { key: 'home', name: '首页 / Home' },
+      { key: 'topics', name: '话题 / Topics' },
+      { key: 'sentences', name: '句子 / Sentences' },
+      { key: 'vocab', name: '词汇 / Vocabulary' },
+      { key: 'flash', name: '闪卡 / Flashcards' },
+      { key: 'quiz', name: '小测 / Quiz' },
+      { key: 'planner', name: '计划 / Planner' },
+    ];
+
+    const TOPICS = [
+      { id:'smalltalk', title:'Small talk · 日常寒暄', hookCN:'天气、学习、周末：10 句就能开聊。', hookEN:'Weather, study, weekends: start chatting with 10 lines.' },
+      { id:'campus', title:'Campus life · 校园生活', hookCN:'问路、借东西、约自习：直接能用。', hookEN:'Directions, borrowing, study plans: directly useful.' },
+      { id:'food', title:'Food & coffee · 点单吃喝', hookCN:'size、milk、sugar、to-go：点单不慌。', hookEN:'Size, milk, sugar, to-go: order confidently.' },
+      { id:'work', title:'Work basics · 工作沟通', hookCN:'会议、邮件、进度：最常用句型。', hookEN:'Meetings, emails, updates: most useful patterns.' },
+      { id:'travel', title:'Travel · 出行问路', hookCN:'车站、换乘、票价：问清楚。', hookEN:'Stations, transfers, tickets: ask clearly.' },
+      { id:'social', title:'Social media · 社交媒体', hookCN:'发帖/评论：简单但自然。', hookEN:'Posts & comments: simple but natural.' },
+    ];
+
+    const SENTENCES = [
+      { topic:'smalltalk', level:'A1', en:"Hi! How's your day going?", zh:'嗨！你今天过得怎么样？' },
+      { topic:'smalltalk', level:'A1', en:"It's nice weather today.", zh:'今天天气不错。' },
+      { topic:'smalltalk', level:'A1', en:'What are you doing this weekend?', zh:'你周末打算做什么？' },
+      { topic:'smalltalk', level:'A1', en:'I am learning English little by little.', zh:'我在一点一点学英语。' },
+
+      { topic:'campus', level:'A1', en:'Where is the library?', zh:'图书馆在哪里？' },
+      { topic:'campus', level:'A1', en:'Can I borrow a pen, please?', zh:'我可以借一支笔吗？' },
+      { topic:'campus', level:'A2', en:'Do you want to study together later?', zh:'你等会儿想一起自习吗？' },
+      { topic:'campus', level:'A2', en:'I am looking for Room 2-12.', zh:'我在找 2-12 教室。' },
+
+      { topic:'food', level:'A1', en:"I'd like a latte, please.", zh:'我想要一杯拿铁。' },
+      { topic:'food', level:'A1', en:'Medium, to go, please.', zh:'中杯，带走。' },
+      { topic:'food', level:'A2', en:'Can I get less sugar?', zh:'我可以少糖吗？' },
+      { topic:'food', level:'A2', en:'Do you have any recommendations?', zh:'你有什么推荐吗？' },
+
+      { topic:'work', level:'A2', en:'Could you please send me an email?', zh:'你可以发封邮件给我吗？' },
+      { topic:'work', level:'A2', en:"Let's schedule a quick meeting.", zh:'我们安排个短会吧。' },
+      { topic:'work', level:'A2', en:"Here's a quick update on the progress.", zh:'这是一个进度简报。' },
+      { topic:'work', level:'A2', en:"I'm not sure. Let me check and get back to you.", zh:'我不确定，我查一下再回复你。' },
+
+      { topic:'travel', level:'A1', en:'Excuse me, how do I get to the station?', zh:'打扰一下，去车站怎么走？' },
+      { topic:'travel', level:'A2', en:'Which bus should I take?', zh:'我该坐哪一路公交？' },
+      { topic:'travel', level:'A2', en:'How much is a ticket to downtown?', zh:'去市中心的票多少钱？' },
+      { topic:'travel', level:'A2', en:'Is this the right platform?', zh:'这是正确的站台吗？' },
+
+      { topic:'social', level:'A1', en:'I love this idea!', zh:'我喜欢这个想法！' },
+      { topic:'social', level:'A2', en:'Thanks for sharing — very helpful.', zh:'谢谢分享——很有帮助。' },
+      { topic:'social', level:'A2', en:'Can you explain it in a simple way?', zh:'你能用简单的方式解释一下吗？' },
+      { topic:'social', level:'A2', en:'I am trying this today. Wish me luck!', zh:'我今天试试，祝我好运！' },
+    ];
+
+    const VOCAB = [
+      { topic:'Small talk', en:'weekend', zh:'周末' },
+      { topic:'Small talk', en:'weather', zh:'天气' },
+      { topic:'Small talk', en:'busy', zh:'忙的' },
+      { topic:'Small talk', en:'relax', zh:'放松' },
+
+      { topic:'Campus', en:'library', zh:'图书馆' },
+      { topic:'Campus', en:'classroom', zh:'教室' },
+      { topic:'Campus', en:'borrow', zh:'借' },
+      { topic:'Campus', en:'schedule', zh:'安排/日程' },
+
+      { topic:'Food', en:'latte', zh:'拿铁' },
+      { topic:'Food', en:'medium', zh:'中杯' },
+      { topic:'Food', en:'to go', zh:'带走' },
+      { topic:'Food', en:'recommend', zh:'推荐' },
+
+      { topic:'Work', en:'email', zh:'邮件' },
+      { topic:'Work', en:'meeting', zh:'会议' },
+      { topic:'Work', en:'update', zh:'更新/进展' },
+      { topic:'Work', en:'progress', zh:'进度' },
+
+      { topic:'Travel', en:'station', zh:'车站' },
+      { topic:'Travel', en:'platform', zh:'站台' },
+      { topic:'Travel', en:'ticket', zh:'票' },
+      { topic:'Travel', en:'downtown', zh:'市中心' },
+
+      { topic:'Social', en:'share', zh:'分享' },
+      { topic:'Social', en:'helpful', zh:'有帮助的' },
+      { topic:'Social', en:'explain', zh:'解释' },
+      { topic:'Social', en:'luck', zh:'运气' },
+    ];
+
+    const KEY = 'english_starter_progress_v3';
+    const defaultProgress = {
+      sentencesSeen: {},
+      vocabStarred: {},
+      flashIndex: 0,
+      quizBest: 0,
+      streakDays: 0,
+      lastStudyDate: null,
+      totalStudyMinutes: 0,
+      topicFilter: 'all',
+      voiceName: '',
+      rate: 0.95,
+    };
+
+    function loadProgress(){
+      try{
+        const raw = localStorage.getItem(KEY);
+        if(!raw) return structuredClone(defaultProgress);
+        const p = JSON.parse(raw);
+        return { ...structuredClone(defaultProgress), ...p };
+      }catch{ return structuredClone(defaultProgress); }
+    }
+    function saveProgress(){
+      localStorage.setItem(KEY, JSON.stringify(progress));
+      renderKPI();
+    }
+    let progress = loadProgress();
+
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+    function toast(msg){
+      const t = $('#toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toast._id);
+      toast._id = setTimeout(()=>t.classList.remove('show'), 1600);
+    }
+
+    function todayStr(){
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function bumpStreak(){
+      const t = todayStr();
+      const last = progress.lastStudyDate;
+      if(!last){ progress.streakDays = 1; progress.lastStudyDate = t; return; }
+      if(last === t) return;
+      const lastDate = new Date(last + 'T00:00:00');
+      const nowDate = new Date(t + 'T00:00:00');
+      const diffDays = Math.round((nowDate - lastDate) / (1000*60*60*24));
+      if(diffDays === 1) progress.streakDays += 1;
+      else progress.streakDays = 1;
+      progress.lastStudyDate = t;
+    }
+
+    function minutesStudy(add=1){
+      progress.totalStudyMinutes += add;
+    }
+
+    // Speaking
+    let VOICES = [];
+    function setVoiceStatus(text){
+      const el = $('#voiceStatus');
+      if(el) el.textContent = text;
+    }
+
+    function pickDefaultEnglishVoice(voices){
+      const prefer = ['en-CA','en-US','en-GB','en-AU'];
+      for(const lang of prefer){
+        const v = voices.find(x => x.lang === lang);
+        if(v) return v;
+      }
+      return voices.find(x => /^en/i.test(x.lang)) || voices[0] || null;
+    }
+
+    function loadVoices(){
+      if(!('speechSynthesis' in window)){
+        setVoiceStatus('Not supported');
+        return;
+      }
+      VOICES = window.speechSynthesis.getVoices();
+      if(!VOICES || VOICES.length === 0){
+        setVoiceStatus('Loading…');
+        return;
+      }
+
+      const sel = $('#voiceSelect');
+      sel.innerHTML = '';
+      const english = VOICES.filter(v => /^en/i.test(v.lang));
+      const list = english.length ? english : VOICES;
+
+      list.forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        opt.textContent = `${v.name} (${v.lang})`;
+        sel.appendChild(opt);
+      });
+
+      let chosen = list.find(v => v.name === progress.voiceName);
+      if(!chosen) chosen = pickDefaultEnglishVoice(list);
+      if(chosen){
+        sel.value = chosen.name;
+        progress.voiceName = chosen.name;
+        saveProgress();
+        setVoiceStatus('Ready');
+      }else{
+        setVoiceStatus('No voice');
+      }
+    }
+
+    function speak(text){
+      if(!('speechSynthesis' in window)){
+        toast('Not supported');
+        return;
+      }
+      if(!text || !String(text).trim()) return;
+      window.speechSynthesis.cancel();
+
+      const u = new SpeechSynthesisUtterance(String(text));
+      const rate = Number($('#rateSelect')?.value || progress.rate || 0.95);
+      u.rate = Math.max(0.6, Math.min(1.2, rate));
+      progress.rate = u.rate;
+
+      const name = $('#voiceSelect')?.value || progress.voiceName;
+      const v = VOICES.find(x => x.name === name) || pickDefaultEnglishVoice(VOICES);
+      if(v) u.voice = v;
+      u.lang = (v && v.lang) ? v.lang : 'en-US';
+
+      u.onstart = () => setVoiceStatus('Speaking…');
+      u.onend = () => setVoiceStatus('Ready');
+      u.onerror = () => setVoiceStatus('Error');
+
+      window.speechSynthesis.speak(u);
+    }
+
+    function stopSpeak(){
+      window.speechSynthesis?.cancel?.();
+      setVoiceStatus('Stopped');
+    }
+
+    function renderKPI(){
+      const seen = Object.keys(progress.sentencesSeen).length;
+      const starred = Object.keys(progress.vocabStarred).filter(k=>progress.vocabStarred[k]).length;
+      const kpi = $('#kpi');
+      if(!kpi) return;
+      kpi.innerHTML = '';
+      const items = [
+        { t:'连续 / Streak', v: String(progress.streakDays) + ' days' },
+        { t:'句子 / Sentences', v: String(seen) },
+        { t:'收藏 / Starred', v: String(starred) },
+        { t:'最高 / Best', v: String(progress.quizBest) + ' / 5' },
+        { t:'分钟 / Minutes', v: String(progress.totalStudyMinutes) },
+        { t:'闪卡 / Flash', v: String(progress.flashIndex+1) + ' / ' + VOCAB.length },
+      ];
+      for(const it of items){
+        const div = document.createElement('div');
+        div.className = 'stat';
+        div.innerHTML = `<div class="t">${it.t}</div><div class="v">${it.v}</div>`;
+        kpi.appendChild(div);
+      }
+    }
+
+    function setViewMeta(title, desc){
+      $('#viewTitle').textContent = title;
+      $('#viewDesc').textContent = desc;
+    }
+
+    function viewHome(){
+      setViewMeta('首页 / Home', '从话题开始，跟读句子，积累词汇，闪卡复习，小测巩固。');
+      const el = $('#view');
+      el.innerHTML = `
+        <div class="hero">
+          <h2>English speaking as a tool for life and opportunity.</h2>
+          <p>用英语开口，抓住生活与机会。Speak English. Build a better life.</p>
+          <div class="divider"></div>
+          <div class="row">
+            <button class="btn primary" onclick="navigate('topics')">从话题开始 / Topics</button>
+            <button class="btn" onclick="navigate('sentences')">练句子 / Sentences</button>
+            <button class="btn" onclick="navigate('quiz')">小测 / Quiz</button>
+          </div>
+        </div>
+
+        <div class="lesson">
+          <h3>每日 10 分钟 / Daily 10 minutes</h3>
+          <div class="bilingual">
+            <div class="bubble">
+              <div class="label">中文</div>
+              <div class="text">
+                1) 选一个话题<br/>
+                2) 跟读 5 句（Speak）<br/>
+                3) 学 6–10 个词（收藏难词）<br/>
+                4) 闪卡 2 分钟（优先收藏）<br/>
+                5) 小测 5 题
+              </div>
+            </div>
+            <div class="bubble">
+              <div class="label">English</div>
+              <div class="text">
+                1) Pick a topic<br/>
+                2) Shadow 5 sentences (Speak)<br/>
+                3) Learn 6–10 words (star hard ones)<br/>
+                4) 2-minute flashcards (starred first)<br/>
+                5) 5-question quiz
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson">
+          <h3>今日打卡 / Check-in</h3>
+          <div class="row">
+            <button class="btn good" id="studyBtn">我今天学过了 / I studied today</button>
+            <button class="btn" id="speakSample">范读示例 / Speak demo</button>
+          </div>
+          <div class="tag" style="margin-top:10px">Demo: “Hi! How's your day going?”</div>
+        </div>
+      `;
+
+      $('#studyBtn').onclick = () => {
+        bumpStreak();
+        minutesStudy(10);
+        saveProgress();
+        toast('Saved ✔');
+      };
+      $('#speakSample').onclick = () => speak("Hi! How's your day going?");
+    }
+
+    function viewTopics(){
+      setViewMeta('话题 / Topics', '选你喜欢的主题，句子与词汇会自动匹配。');
+      const el = $('#view');
+      el.innerHTML = `
+        <div class="lesson">
+          <h3>选择话题 / Choose a topic</h3>
+          <div class="row" style="margin-bottom:10px">
+            <button class="btn ${progress.topicFilter==='all' ? 'primary':''}" onclick="setTopic('all')">全部 / All</button>
+            ${TOPICS.map(t=>`<button class="btn ${progress.topicFilter===t.id ? 'primary':''}" onclick="setTopic('${t.id}')">${escapeHtml(t.title)}</button>`).join('')}
+          </div>
+          <div class="tag">Filter: <b>${escapeHtml(progress.topicFilter)}</b></div>
+        </div>
+
+        ${TOPICS.map(t=>`
+          <div class="lesson">
+            <h3>${escapeHtml(t.title)}</h3>
+            <div class="bilingual">
+              <div class="bubble"><div class="label">中文</div><div class="text">${escapeHtml(t.hookCN)}</div></div>
+              <div class="bubble"><div class="label">English</div><div class="text">${escapeHtml(t.hookEN)}</div></div>
+            </div>
+            <div style="height:10px"></div>
+            <div class="row">
+              <button class="btn small" onclick="setTopic('${t.id}'); navigate('sentences')">句子 / Sentences</button>
+              <button class="btn small" onclick="setTopic('${t.id}'); navigate('vocab')">词汇 / Vocabulary</button>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+
+    function setTopic(id){
+      progress.topicFilter = id;
+      saveProgress();
+      viewTopics();
+      toast('OK');
+    }
+
+    function viewSentences(){
+      setViewMeta('句子 / Sentences', '每句：Speak 跟读 3 遍 → 标记已学。');
+      const el = $('#view');
+
+      const filtered = progress.topicFilter==='all'
+        ? SENTENCES
+        : SENTENCES.filter(s=>s.topic===progress.topicFilter);
+
+      el.innerHTML = `
+        <div class="row" style="margin-bottom:12px">
+          <button class="btn" onclick="quickLearn5()">快速 5 句 / Quick 5</button>
+          <button class="btn" onclick="navigate('vocab')">词汇 / Vocab</button>
+          <button class="btn" onclick="navigate('quiz')">小测 / Quiz</button>
+          <span class="tag">Filter: <b>${escapeHtml(progress.topicFilter)}</b></span>
+        </div>
+        ${filtered.map((s) => {
+          const globalIndex = SENTENCES.indexOf(s);
+          const key = `s_${globalIndex}`;
+          const done = !!progress.sentencesSeen[key];
+          const topicTitle = TOPICS.find(t=>t.id===s.topic)?.title || s.topic;
+          return `
+            <div class="lesson">
+              <h3>${escapeHtml(s.level)} · ${escapeHtml(topicTitle)}</h3>
+              <div class="bilingual">
+                <div class="bubble"><div class="label">English</div><div class="text">${escapeHtml(s.en)}</div></div>
+                <div class="bubble"><div class="label">中文</div><div class="text">${escapeHtml(s.zh)}</div></div>
+              </div>
+              <div style="height:10px"></div>
+              <div class="row">
+                <button class="btn small" onclick="speak(${JSON.stringify(s.en)})">Speak</button>
+                <button class="btn small ${done ? 'good' : ''}" onclick="markSentence('${key}')">${done ? 'Learned' : 'Mark learned'}</button>
+                <button class="btn small" onclick="copyText(${JSON.stringify(s.en)})">Copy</button>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+
+    function markSentence(key){
+      progress.sentencesSeen[key] = true;
+      bumpStreak();
+      minutesStudy(1);
+      saveProgress();
+      viewSentences();
+      toast('Saved');
+    }
+
+    function quickLearn5(){
+      let marked = 0;
+      const order = progress.topicFilter==='all'
+        ? SENTENCES.map((_,i)=>i)
+        : SENTENCES.map((s,i)=>({s,i})).filter(x=>x.s.topic===progress.topicFilter).map(x=>x.i);
+      for(const i of order){
+        if(marked>=5) break;
+        const key = `s_${i}`;
+        if(!progress.sentencesSeen[key]){ progress.sentencesSeen[key]=true; marked++; }
+      }
+      bumpStreak();
+      minutesStudy(5);
+      saveProgress();
+      viewSentences();
+      toast(`Done ${marked}`);
+    }
+
+    function viewVocab(){
+      setViewMeta('词汇 / Vocabulary', '搜索 + 收藏（⭐）→ 用收藏做闪卡。');
+      const el = $('#view');
+
+      const map = { smalltalk:'Small talk', campus:'Campus', food:'Food', work:'Work', travel:'Travel', social:'Social' };
+      const filteredBase = (progress.topicFilter==='all')
+        ? VOCAB
+        : VOCAB.filter(w => w.topic === (map[progress.topicFilter] || w.topic));
+
+      el.innerHTML = `
+        <div class="row" style="margin-bottom:10px">
+          <input class="input" id="vSearch" placeholder="Search (e.g., meeting)" />
+          <button class="btn" onclick="navigate('flash')">Flash</button>
+          <span class="tag">Filter: <b>${escapeHtml(progress.topicFilter)}</b></span>
+        </div>
+        <div class="list" id="vList"></div>
+      `;
+
+      const input = $('#vSearch');
+      const render = () => {
+        const q = (input.value || '').trim().toLowerCase();
+        const filtered = filteredBase.filter(w => !q || w.en.toLowerCase().includes(q) || w.zh.includes(q) || w.topic.toLowerCase().includes(q));
+        const list = $('#vList');
+        list.innerHTML = filtered.map((w) => {
+          const id = vocabId(w);
+          const starred = !!progress.vocabStarred[id];
+          return `
+            <div class="word">
+              <div class="left">
+                <div class="en"><b>${escapeHtml(w.en)}</b> <span class="tag">· ${escapeHtml(w.topic)}</span></div>
+                <div class="zh">${escapeHtml(w.zh)}</div>
+              </div>
+              <div class="row">
+                <button class="btn small" onclick="speak(${JSON.stringify(w.en)})">Speak</button>
+                <button class="btn small ${starred ? 'good' : ''}" onclick="toggleStar('${id}')">${starred ? 'Starred ⭐' : 'Star ⭐'}</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      };
+
+      input.addEventListener('input', render);
+      render();
+    }
+
+    function vocabId(w){ return `${w.topic}::${w.en}`; }
+
+    function toggleStar(id){
+      progress.vocabStarred[id] = !progress.vocabStarred[id];
+      bumpStreak();
+      minutesStudy(1);
+      saveProgress();
+      viewVocab();
+      toast(progress.vocabStarred[id] ? 'Starred' : 'Unstarred');
+    }
+
+    function viewFlash(){
+      setViewMeta('闪卡 / Flashcards', '先看中文→想英文→翻面→Speak。');
+      const el = $('#view');
+
+      const i = Math.max(0, Math.min(progress.flashIndex, VOCAB.length-1));
+      const w = VOCAB[i];
+      const id = vocabId(w);
+      const starred = !!progress.vocabStarred[id];
+
+      el.innerHTML = `
+        <div class="lesson">
+          <h3>Card ${i+1} / ${VOCAB.length}</h3>
+          <div class="bilingual">
+            <div class="bubble"><div class="label">中文 / Chinese</div><div class="text" style="font-size:18px"><b>${escapeHtml(w.zh)}</b></div></div>
+            <div class="bubble" id="flashBack"><div class="label">English</div><div class="text" style="font-size:22px"><b>${escapeHtml(w.en)}</b></div></div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="row">
+            <button class="btn small" id="flipBtn">Flip</button>
+            <button class="btn small" onclick="speak(${JSON.stringify(w.en)})">Speak</button>
+            <button class="btn small ${starred ? 'good' : ''}" onclick="toggleStar('${id}')">${starred ? 'Starred ⭐' : 'Star ⭐'}</button>
+          </div>
+          <div style="height:10px"></div>
+          <div class="row">
+            <button class="btn" onclick="prevFlash()">Prev</button>
+            <button class="btn primary" onclick="nextFlash(true)">I know it</button>
+            <button class="btn warn" onclick="nextFlash(false)">Hard</button>
+          </div>
+        </div>
+      `;
+
+      const back = $('#flashBack');
+      back.style.opacity = '0.18';
+      back.style.filter = 'blur(6px)';
+      $('#flipBtn').onclick = () => {
+        const hidden = back.style.opacity !== '1';
+        back.style.opacity = hidden ? '1' : '0.18';
+        back.style.filter = hidden ? 'none' : 'blur(6px)';
+      };
+    }
+
+    function nextFlash(){
+      progress.flashIndex = (progress.flashIndex + 1) % VOCAB.length;
+      bumpStreak();
+      minutesStudy(1);
+      saveProgress();
+      viewFlash();
+    }
+    function prevFlash(){
+      progress.flashIndex = (progress.flashIndex - 1 + VOCAB.length) % VOCAB.length;
+      saveProgress();
+      viewFlash();
+    }
+
+    function viewQuiz(){
+      setViewMeta('小测 / Quiz', '5 题随机：词汇 + 句子。');
+      const el = $('#view');
+
+      const questions = makeQuiz(5);
+      let score = 0;
+      let answered = 0;
+
+      el.innerHTML = `
+        <div class="row" style="margin-bottom:12px">
+          <button class="btn" id="newQuiz">New quiz</button>
+          <button class="btn" onclick="navigate('sentences')">Sentences</button>
+          <button class="btn" onclick="navigate('vocab')">Vocab</button>
+        </div>
+        <div class="quiz" id="quizWrap"></div>
+        <div style="height:12px"></div>
+        <div class="row">
+          <button class="btn primary" id="finishBtn" disabled>Finish</button>
+          <div id="scoreLine" class="tag">Finish to see your score.</div>
+        </div>
+      `;
+
+      const wrap = $('#quizWrap');
+      wrap.innerHTML = questions.map((q, qi) => `
+        <div class="q" data-qi="${qi}">
+          <div class="prompt"><b>Q${qi+1}.</b> ${escapeHtml(q.prompt)}</div>
+          <div class="choices">
+            ${q.choices.map((c, ci)=>`<button class="btn" data-ci="${ci}">${escapeHtml(c)}</button>`).join('')}
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn small" onclick="speak(${JSON.stringify(q.speak)})">Speak</button>
+            <span class="tag">${escapeHtml(q.type)}</span>
+          </div>
+        </div>
+      `).join('');
+
+      $$('.q').forEach((qEl) => {
+        const qi = Number(qEl.getAttribute('data-qi'));
+        const q = questions[qi];
+        const buttons = Array.from(qEl.querySelectorAll('button[data-ci]'));
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if(q.answered) return;
+            q.answered = true;
+            answered++;
+            const ci = Number(btn.getAttribute('data-ci'));
+            const correct = (ci === q.answerIndex);
+            if(correct) score++;
+            buttons.forEach(b => b.classList.add('small'));
+            btn.classList.add(correct ? 'good' : 'bad');
+            buttons[q.answerIndex].classList.add('good');
+            if(answered === questions.length) $('#finishBtn').disabled = false;
+          });
+        });
+      });
+
+      $('#newQuiz').onclick = () => viewQuiz();
+      $('#finishBtn').onclick = () => {
+        bumpStreak();
+        minutesStudy(5);
+        progress.quizBest = Math.max(progress.quizBest, score);
+        saveProgress();
+        $('#scoreLine').textContent = `Score: ${score} / ${questions.length}`;
+        toast('Saved');
+      };
+    }
+
+    function makeQuiz(n=5){
+      const qs = [];
+      for(let i=0;i<3;i++){
+        const w = VOCAB[Math.floor(Math.random()*VOCAB.length)];
+        const correct = w.en;
+        const distract = shuffle([...new Set(VOCAB.map(x=>x.en).filter(x=>x!==correct))]).slice(0,3);
+        const choices = shuffle([correct, ...distract]);
+        qs.push({ type:'Vocab', prompt:`“${w.zh}” in English?`, choices, answerIndex:choices.indexOf(correct), speak:correct, answered:false });
+      }
+      while(qs.length < n){
+        const pool = (progress.topicFilter==='all') ? SENTENCES : SENTENCES.filter(s=>s.topic===progress.topicFilter);
+        const s = (pool.length ? pool : SENTENCES)[Math.floor(Math.random()*(pool.length ? pool.length : SENTENCES.length))];
+        const correct = s.zh;
+        const distract = shuffle([...new Set(SENTENCES.map(x=>x.zh).filter(x=>x!==correct))]).slice(0,3);
+        const choices = shuffle([correct, ...distract]);
+        qs.push({ type:'Sentence', prompt:`Meaning in Chinese?
+“${s.en}”`, choices, answerIndex:choices.indexOf(correct), speak:s.en, answered:false });
+      }
+      return qs;
+    }
+
+    function viewPlanner(){
+      setViewMeta('计划 / Planner', '4 周入门计划：每天 10–15 分钟。');
+      const el = $('#view');
+      el.innerHTML = `
+        <div class="lesson">
+          <h3>4 周计划 / 4-week plan</h3>
+          <div class="bilingual">
+            <div class="bubble"><div class="label">中文</div><div class="text">
+              <b>第 1 周：</b>选 1 个话题，跟读 5 句 + 6 词。<br/>
+              <b>第 2 周：</b>替换关键词造句：I want / I need / I like。<br/>
+              <b>第 3 周：</b>闪卡只练收藏的，2–5 分钟。<br/>
+              <b>第 4 周：</b>每天小测 1 次，把错题对应句子再跟读。
+            </div></div>
+            <div class="bubble"><div class="label">English</div><div class="text">
+              <b>Week 1:</b> 1 topic: shadow 5 sentences + 6 words. <br/>
+              <b>Week 2:</b> Swap keywords: I want / I need / I like. <br/>
+              <b>Week 3:</b> Flash only starred words, 2–5 minutes. <br/>
+              <b>Week 4:</b> One quiz daily. Re-shadow wrong sentences.
+            </div></div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="row">
+            <button class="btn primary" onclick="navigate('topics')">Topics</button>
+            <button class="btn" onclick="navigate('sentences')">Sentences</button>
+          </div>
+        </div>
+
+        <div class="lesson">
+          <h3>10 个万能句式 / 10 power patterns</h3>
+          <div class="bilingual">
+            <div class="bubble"><div class="label">English</div><div class="text">
+              1) I want ____. <br/>
+              2) I need ____. <br/>
+              3) I like ____. <br/>
+              4) I don't like ____. <br/>
+              5) Can you help me? <br/>
+              6) Can you say it again? <br/>
+              7) What does ____ mean? <br/>
+              8) How much is ____? <br/>
+              9) Where is ____? <br/>
+              10) Let's do it later.
+            </div></div>
+            <div class="bubble"><div class="label">中文</div><div class="text">
+              1) 我想要____。<br/>
+              2) 我需要____。<br/>
+              3) 我喜欢____。<br/>
+              4) 我不喜欢____。<br/>
+              5) 你能帮我吗？<br/>
+              6) 你能再说一遍吗？<br/>
+              7) ____是什么意思？<br/>
+              8) ____多少钱？<br/>
+              9) ____在哪里？<br/>
+              10) 我们等会儿做吧。
+            </div></div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="row">
+            <button class="btn" onclick="speak('I want a latte, please.')">Speak</button>
+            <button class="btn" onclick="speak("Let's schedule a quick meeting.")">Speak</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function buildNav(){
+      const nav = $('#nav');
+      nav.innerHTML = '';
+      MODULES.forEach(m => {
+        const b = document.createElement('div');
+        b.className = 'chip';
+        b.textContent = m.name;
+        b.onclick = () => navigate(m.key);
+        b.dataset.key = m.key;
+        nav.appendChild(b);
+      });
+    }
+
+    function highlightNav(key){
+      $$('#nav .chip').forEach(c => c.classList.toggle('active', c.dataset.key === key));
+    }
+
+    function navigate(key){
+      highlightNav(key);
+      if(key === 'home') return viewHome();
+      if(key === 'topics') return viewTopics();
+      if(key === 'sentences') return viewSentences();
+      if(key === 'vocab') return viewVocab();
+      if(key === 'flash') return viewFlash();
+      if(key === 'quiz') return viewQuiz();
+      if(key === 'planner') return viewPlanner();
+    }
+
+    function shuffle(arr){
+      const a = arr.slice();
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+
+    function copyText(text){
+      navigator.clipboard?.writeText(text).then(()=>toast('Copied')).catch(()=>toast('Copy failed'));
+    }
+
+    // Reset / Export / Import
+    $('#resetBtn').onclick = () => {
+      if(confirm('Reset all progress?')){
+        progress = structuredClone(defaultProgress);
+        saveProgress();
+        navigate('home');
+        toast('Reset');
+      }
+    };
+
+    $('#exportBtn').onclick = () => {
+      copyText(JSON.stringify(progress));
+      toast('Exported');
+    };
+
+    $('#importBtn').onclick = () => {
+      const input = $('#importInput');
+      input.style.display = input.style.display === 'none' ? 'block' : 'none';
+      input.value = '';
+      input.focus();
+      input.onkeydown = (e) => {
+        if(e.key === 'Enter'){
+          try{
+            const obj = JSON.parse(input.value);
+            progress = { ...structuredClone(defaultProgress), ...obj };
+            saveProgress();
+            navigate('home');
+            toast('Imported');
+            input.style.display = 'none';
+          }catch{
+            toast('Invalid JSON');
+          }
+        }
+      };
+    };
+
+    function wireSpeakControls(){
+      const rateSel = $('#rateSelect');
+      if(rateSel) rateSel.value = String(progress.rate || 0.95);
+
+      $('#testVoiceBtn').onclick = () => {
+        progress.voiceName = $('#voiceSelect')?.value || '';
+        saveProgress();
+        speak("Hi! How's your day going? Let's practice English.");
+      };
+      $('#stopVoiceBtn').onclick = () => stopSpeak();
+
+      $('#voiceSelect').onchange = () => { progress.voiceName = $('#voiceSelect').value; saveProgress(); toast('Voice set'); };
+      $('#rateSelect').onchange = () => { progress.rate = Number($('#rateSelect').value); saveProgress(); toast('Rate set'); };
+    }
+
+    // Boot
+    buildNav();
+    renderKPI();
+    navigate('home');
+    wireSpeakControls();
+
+    if('speechSynthesis' in window){
+      window.speechSynthesis.onvoiceschanged = () => loadVoices();
+      loadVoices();
+      setTimeout(loadVoices, 250);
+      setTimeout(loadVoices, 800);
+    }else{
+      setVoiceStatus('Not supported');
+    }
+  </script>
+</body>
+</html>
